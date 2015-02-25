@@ -1,4 +1,4 @@
-/*! carousel.js v1.0 | MIT License | git.io/carouseljs */
+/*! carousel.js v1.0 | MIT License | https://github.com/oldrivercreative/carousel */
 (function($){
 	$.fn.carousel = function(options){
 		
