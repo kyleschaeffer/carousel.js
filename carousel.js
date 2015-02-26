@@ -1,10 +1,10 @@
 /*! carousel.js v1.0 | MIT License | https://github.com/oldrivercreative/carousel */
 (function($){
-	$.fn.carousel = function(options){
-		
-		// settings
-		var settings = $.extend({}, {
-			paging: false,
+    $.fn.carousel = function(options){
+        
+        // settings
+        var settings = $.extend({}, {
+            paging: false,
             navigation: false,
             loop: false,
             autoplay: false,
@@ -14,12 +14,12 @@
                 next: 'Next',
                 navigation: '%i'
             },
-			movethreshold: 10,
-			swipethreshold: 10,
-			oninit: false,
-			onupdate: false,
+            movethreshold: 10,
+            swipethreshold: 10,
+            oninit: false,
+            onupdate: false,
             destroy: false
-		}, options);
+        }, options);
         
         // autoplay timer
         var timer = false;
@@ -29,13 +29,13 @@
         if('WebkitTransform' in document.body.style || 'MozTransform' in document.body.style || 'transform' in document.body.style){
             window.optimusPrime = true;
         }
-		
-		// carousel
-		this.each(function(){
-			
-			// get objects
-			var carousel = $(this);
-			var shaker = carousel.find('ul:eq(0)');
+        
+        // carousel
+        this.each(function(){
+            
+            // get objects
+            var carousel = $(this);
+            var shaker = carousel.find('ul:eq(0)');
             
             // destroy?
             if(settings.destroy){
@@ -545,7 +545,7 @@
         }
         
         // done
-		return this;
-		
-	};
+        return this;
+        
+    };
 }(jQuery));
