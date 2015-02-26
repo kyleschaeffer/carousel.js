@@ -47,7 +47,7 @@ There are various ways to configure the **carousel.js** script for different beh
 $('.selector').carousel({
   paging: false,           // enable paging buttons
   navigation: false,       // enable navigation buttons
-  loop: false,             // enable loop (only works with paging enabled)
+  loop: false,             // enable loop (only works with paging or autoplay)
   autoplay: false,         // automatically advance to the next slide
   delay: 12000,            // use with autoplay, delay between transitions
   buttons: {

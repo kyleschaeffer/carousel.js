@@ -291,6 +291,7 @@
                     
                     // set timer
                     timer = setTimeout(function(){
+                        carousel.data('carousel-last-touch', false);
                         carousel.trigger('carousel-advance');
                     }, settings.delay);
                     
