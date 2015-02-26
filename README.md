@@ -80,7 +80,7 @@ Multiple carousel items may appear at once using the **carousel.js** script. You
 ```
 In this example, two items will appear side-by-side on extra-small screens (`xs-2cols`). Four items will appear on small screens (`sm-4cols`), five items will appear on medium screens (`md-5cols`), and six items will appear on large screens (`lg-6cols`). The [carousel.css](https://github.com/oldrivercreative/carousel/blob/master/carousel.css) stylesheet includes styles for up to twelve columns within your carousels.
 
-Responsive screen sizes, class names, and abd example of each class name are shown below:
+Responsive screen sizes, class names, and an example of each class name are shown below. For class names, replace `%` with the number of columns you would like to display.
 
 | Screen size | Class name | Example | Max |
 | ----------- | ---------- | ------- | --- |
