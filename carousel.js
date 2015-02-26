@@ -6,12 +6,23 @@
 		var settings = $.extend({}, {
 			paging: false,
             navigation: false,
+            loop: false,
+            autoplay: false,
+            delay: 12000,
+            buttons: {
+                previous: 'Previous',
+                next: 'Next',
+                navigation: '%i'
+            },
 			movethreshold: 10,
 			swipethreshold: 10,
 			oninit: false,
 			onupdate: false,
             destroy: false
 		}, options);
+        
+        // autoplay timer
+        var timer = false;
         
         // transform?
         window.optimusPrime = false;
@@ -40,28 +51,41 @@
                     // data
                     carousel.data('carousel-position', 0);
                     carousel.data('carousel-touch-change', 0);
+                    carousel.data('carousel-last-touch', false);
                     carousel.data('carousel-item-count', shaker.children().size());
 
                     // add classes
-                    $(carousel).addClass('ui-carousel');
-                    $(shaker).addClass('ui-carousel-shaker');
+                    carousel.addClass('ui-carousel');
+                    shaker.addClass('ui-carousel-shaker');
 
                     // paging?
                     if(settings.paging){
 
                         // previous
-                        var previous = $('<button class="previous"><span class="icon-arrow-left5"></span></button>');
+                        var previous = $('<button class="previous"><span>' + settings.buttons.previous + '</span></button>');
                         previous.on('click', function(e){
                             e.preventDefault();
+                            
+                            // not a touch gesture
+                            carousel.data('carousel-last-touch', false);
+                            
+                            // retreat
                             carousel.trigger('carousel-retreat');
+                            
                         });
                         carousel.append(previous);
 
                         // next
-                        var next = $('<button class="next"><span class="icon-arrow-right5"></span></button>');
+                        var next = $('<button class="next"><span>' + settings.buttons.next + '</span></button>');
                         next.on('click', function(e){
                             e.preventDefault();
+                            
+                            // not a touch gesture
+                            carousel.data('carousel-last-touch', false);
+                            
+                            // advance
                             carousel.trigger('carousel-advance');
+                            
                         });
                         carousel.append(next);
 
@@ -75,7 +99,8 @@
                         for(var i = 0; i < carousel.data('carousel-item-count'); i++){
                             
                             // <button>
-                            var button = $('<button><span>' + (i+1) + '</span></button>');
+                            var navlabel = settings.buttons.navigation.replace('%i', (i+1));
+                            var button = $('<button><span>' + navlabel + '</span></button>');
                             button.data('carousel-item', i);
                             button.on('click', function(e){
                                 e.preventDefault();
@@ -85,6 +110,9 @@
                                 var slidewidth = shaker.children('li:eq(0)').width() / shaker.width() * 100;
                                 p = p * slidewidth * -1;
                                 carousel.data('carousel-position', p);
+                                
+                                // not a touch gesture
+                                carousel.data('carousel-last-touch', false);
 
                                 // contain
                                 carousel.trigger('carousel-contain');
@@ -112,9 +140,17 @@
                         carousel.append(ul);
                         
                     }
+                    
+                    // contain
+                    carousel.trigger('carousel-contain');
+                    
+                    // autoplay?
+                    if(settings.autoplay){
+                        carousel.trigger('carousel-queue');
+                    }
 
                     // oninit?
-                    if(settings.oninit){
+                    if(typeof(settings.oninit) == 'function'){
                         settings.oninit();
                     }
 
@@ -131,6 +167,11 @@
                         x: position.x,
                         y: $(window).scrollTop()
                     });
+                    
+                    // disable autoplay while swiping
+                    if(settings.autoplay){
+                        carousel.trigger('carousel-dequeue');
+                    }
 
                 });
 
@@ -180,7 +221,7 @@
                         }
 
                         // onupdate?
-                        if(settings.onupdate){
+                        if(typeof(settings.onupdate) == 'function'){
                             settings.onupdate(p);
                         }
 
@@ -209,17 +250,24 @@
                         // position
                         var position = carousel.data('carousel-position');
                         var change = carousel.data('carousel-touch-change');
-
+                        
                         // swipe?
                         if(change >= settings.swipethreshold){
                             var slidewidth = shaker.children('li:eq(0)').width() / shaker.width() * 100;
-                            change = slidewidth;
+                            if(change <= slidewidth){
+                                change = slidewidth;
+                            }
                         }
                         else if(change <= settings.swipethreshold * -1){
                             var slidewidth = shaker.children('li:eq(0)').width() / shaker.width() * 100;
-                            change = slidewidth * -1;
+                            if(change >= slidewidth * -1){
+                                change = slidewidth * -1;
+                            }
                         }
 
+                        // touch gesture
+                        carousel.data('carousel-last-touch', true);
+                        
                         // update
                         carousel.data('carousel-position', position + change);
 
@@ -230,7 +278,30 @@
                         carousel.trigger('carousel-slide');
 
                     }
+                    
+                    // queue next transition
+                    if(settings.autoplay){
+                        carousel.trigger('carousel-queue');
+                    }
 
+                });
+                
+                // queue next transition
+                carousel.on('carousel-queue', function(){
+                    
+                    // set timer
+                    timer = setTimeout(function(){
+                        carousel.trigger('carousel-advance');
+                    }, settings.delay);
+                    
+                });
+                
+                // de-queue transitions
+                carousel.on('carousel-dequeue', function(){
+                    
+                    // unset timer
+                    clearTimeout(timer);
+                    
                 });
 
                 // advance
@@ -247,6 +318,12 @@
 
                     // slide
                     carousel.trigger('carousel-slide');
+                    
+                    // autoplay?
+                    if(settings.autoplay){
+                        carousel.trigger('carousel-dequeue');
+                        carousel.trigger('carousel-queue');
+                    }
 
                 });
 
@@ -264,6 +341,12 @@
 
                     // slide
                     carousel.trigger('carousel-slide');
+                    
+                    // autoplay?
+                    if(settings.autoplay){
+                        carousel.trigger('carousel-dequeue');
+                        carousel.trigger('carousel-queue');
+                    }
 
                 });
 
@@ -279,10 +362,34 @@
                     var p = carousel.data('carousel-position');
                     p = Math.round(p / slidewidth) * slidewidth;
                     if(p > 0){
-                        p = 0;
+                        if(settings.loop && !carousel.data('carousel-last-touch')){
+                            p = slidewidth * (slides - slidesinview) * -1;
+                        }
+                        else{
+                            p = 0;
+                        }
                     }
                     else if(p < slidewidth * (slides - slidesinview) * -1){
-                        p = slidewidth * (slides - slidesinview) * -1;
+                        if(settings.loop && !carousel.data('carousel-last-touch')){
+                            p = 0;
+                        }
+                        else{
+                            p = slidewidth * (slides - slidesinview) * -1;
+                        }
+                    }
+                    
+                    // disable paging
+                    if(!settings.loop && settings.paging && p >= 0){
+                        carousel.children('button.previous').prop('disabled', true);
+                    }
+                    else if(!settings.loop && settings.paging){
+                        carousel.children('button.previous[disabled]').prop('disabled', false);
+                    }
+                    if(!settings.loop && settings.paging && p <= slidewidth * (slides - slidesinview) * -1){
+                        carousel.children('button.next').prop('disabled', true);
+                    }
+                    else if(!settings.loop && settings.paging){
+                        carousel.children('button.next[disabled]').prop('disabled', false);
                     }
 
                     // update
@@ -372,9 +479,10 @@
             // add classes
             $('body').addClass('ui-draggables-listen');
 
-            // resize
-            $(window).on('resize', function(e){
+            // resize / orientation
+            $(window).on('resize orientationchange', function(e){
                 $('.ui-carousel').trigger('carousel-slide');
+                $('.ui-carousel').trigger('carousel-contain');
             });
 
             // touch down

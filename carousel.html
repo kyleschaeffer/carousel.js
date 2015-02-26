@@ -5,20 +5,235 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>carousel.js</title>
         <meta name="description" content="">
+        
+        <style type="text/css">
+            
+            /* document style */
+            body {
+                margin: 0;
+                background: #fafafa;
+                font-size: 14px;
+                font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                color: #555;
+                line-height: 1.4;
+            }
+            a {
+                color: #0e72a0;
+            }
+            h1 {
+                text-align: center;
+                font-size: 3em;
+                font-weight: 700;
+                margin: 0;
+            }
+            h2 {
+                font-weight: 200;
+                font-size: 1.5em;
+                margin: 1.5em 0 0 0;
+                line-height: 1.1;
+            }
+            p {
+                margin: 0.5em 0 0 0;
+            }
+            code {
+                display: inline-block;
+                font-size: 0.9em;
+                padding: 0.1em 0.25em;
+                border-radius: 2px;
+                background: #fafafa;
+            }
+            pre {
+                padding: 1em;
+                background: #fafafa;
+                margin: 1em 0;
+                overflow-x: auto;
+            }
+            .wrapper {
+                max-width: 960px;
+                margin: auto;
+                padding: 20px 10px 40px 10px;
+                background: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            }
+            @media (min-width: 768px){
+                body {
+                    font-size: 17px;
+                }
+                h1 {
+                    font-size: 5em;
+                }
+                h2 {
+                    font-size: 3em;
+                    margin-top: 2em;
+                }
+                .wrapper {
+                    padding: 24px 48px 96px 48px;
+                }
+            }
+            
+            /* remove margins and padding while script is loading */
+            .carousel ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            
+            /* simple carousel */
+            .my-simple-item {
+                background: #555;
+                color: #fff;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 200;
+                line-height: 100px;
+            }
+            
+            /* hero carousel */
+            .my-hero-item {
+                background: #555;
+                color: #fff;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 200;
+                line-height: 300px;
+            }
+            
+            /* product spinner */
+            div.my-product-spinner {
+                padding: 20px 0;
+                background: #555;
+            }
+            .my-product-spinner-inner {
+                margin: 0 48px;
+                overflow: hidden;
+            }
+            .my-product-item {
+                margin: 10px;
+                padding: 80px 0;
+                background: #777;
+                color: #ccc;
+                text-align: center;
+            }
+            
+        </style>
+        
+        <!-- stylesheet -->
         <link rel="stylesheet" href="carousel.min.css">
+        
     </head>
     <body>
         
-        <!-- html template -->
-        <div class="carousel">
-            <ul>
-                <li>
-                    Slider content 1
-                </li>
-                <li>
-                    Slider content 2
-                </li>
-            </ul>
+        <div class="wrapper">
+            
+            <h1>carousel.js</h1>
+            
+            <!-- basic template -->
+            <h2>Simple example</h2>
+            <p>In this example, we&rsquo;ll use all the default options from <strong>carousel.js</strong> to create a simple touch-friendly carousel.</p>
+            <pre>$('.my-simple-carousel').carousel();</pre>
+            <div class="carousel my-simple-carousel">
+                <ul>
+                    <li>
+                        <div class="my-simple-item">
+                            Swipe or drag to see more &raquo;
+                        </div>
+                    </li><li>
+                        <div class="my-simple-item">
+                            &laquo; Hi, there &raquo;
+                        </div>
+                    </li><li>
+                        <div class="my-simple-item">
+                            &laquo; Thanks for swiping
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- hero template -->
+            <h2>Hero carousel example</h2>
+            <p>Creating a hero carousel is easy with <strong>carousel.js</strong>. We&rsquo;ll enable a few options when initializing our script to add some new functionality to the carousel.</p>
+            <pre>$('.my-hero-carousel').carousel({
+    paging: true,
+    navigation: true,
+    loop: true,
+    autoplay: true,
+    delay: 5000
+});</pre>
+            <div class="carousel my-hero-carousel">
+                <ul>
+                    <li>
+                        <div class="my-hero-item">
+                            I&rsquo;m accessible!
+                        </div>
+                    </li><li>
+                        <div class="my-hero-item">
+                            &hellip;and functional.
+                        </div>
+                    </li><li>
+                        <div class="my-hero-item">
+                            Easy-peasy, lemon-squeezy.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- product spinner template -->
+            <h2>Product spinner example</h2>
+            <p>The <strong>carousel.js</strong> script includes styles for building multi-column carousels, like shown in the example below. Simply add a CSS class, such as <code>sm-4cols</code>, to your carousel HTML in order to display carousel items in multiple columns on different screen sizes.</p>
+            <pre>$('.my-product-spinner').carousel({
+    paging: true
+});</pre>
+            <div class="carousel xs-2cols sm-4cols md-5cols lg-6cols my-product-spinner">
+                <div class="my-product-spinner-inner">
+                    <ul>
+                        <li>
+                            <div class="my-product-item">
+                                Product 1
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 2
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 3
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 4
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 5
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 6
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 7
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 8
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 9
+                            </div>
+                        </li><li>
+                            <div class="my-product-item">
+                                Product 10
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Learn more about <strong>carousel.js</strong></h2>
+            <p>View the source code, find helpful documentation, and see more examples of <strong>carousel.js</strong> in action on the GitHub project site: <a href="https://github.com/oldrivercreative/carousel">https://github.com/oldrivercreative/carousel</a></p>
+            
         </div>
         
         <!-- dependencies -->
@@ -27,10 +242,24 @@
         
         <!-- run the script -->
         <script>
-            $('.carousel').carousel({
+            
+            // simple carousel
+            $('.my-simple-carousel').carousel();
+            
+            // hero carousel
+            $('.my-hero-carousel').carousel({
                 paging: true,
-                navigation: true
+                navigation: true,
+                loop: true,
+                autoplay: true,
+                delay: 5000
             });
+            
+            // product spinner carousel
+            $('.my-product-spinner').carousel({
+                paging: true
+            });
+            
         </script>
         
     </body>
