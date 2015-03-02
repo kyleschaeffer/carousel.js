@@ -425,7 +425,7 @@
                     }
 
                     // onupdate?
-                    if(settings.onupdate){
+                    if(typeof(settings.onupdate) == 'function'){
                         settings.onupdate(p);
                     }
 

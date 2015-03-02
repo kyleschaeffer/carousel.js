@@ -12,14 +12,13 @@ A responsive carousel script that's easy as pie, for use in HTML5 applications. 
 The easiest way to get started with **carousel.js** is to attach the required JavaScript and CSS stylesheet to your HTML document. Once attached, simply format your HTML and run the script to create a carousel.
 
 ### Prerequisites
-1. Attach the [jQuery library](http://jquery.com/) version 1.7.0 or higher to your HTML document
-2. Attach the [carousel.js](https://github.com/oldrivercreative/carousel/blob/master/carousel.js) script to your HTML document, or copy the contents of this file into an existing JS file
-3. Attach the [carousel.css](https://github.com/oldrivercreative/carousel/blob/master/carousel.css) file to your HTML document, or copy the contents of this file into an existing CSS file
+1. Attach [jQuery](http://jquery.com/) version 1.7.0 or higher to your HTML document
+2. Attach [carousel.js](https://github.com/oldrivercreative/carousel/blob/master/carousel.js), or copy the contents of this file into an existing JS file
+3. Attach [carousel.css](https://github.com/oldrivercreative/carousel/blob/master/carousel.css), or copy the contents of this file into an existing CSS file
 
 ### Making carousels
-With all prerequisites in place, you're ready to start creating carousels. Create a container and an unordered list (`<ul>`) in your HTML, and then run the `carousel()` jQuery function on your container. For example:
+With all prerequisites in place, you're ready to start creating carousels. Create a container and an unordered list (`<ul>`) in your HTML, and then run the `carousel()` jQuery function on your container.
 
-##### HTML
 ```html
 <div class="my-carousel">
   <ul>
@@ -30,15 +29,13 @@ With all prerequisites in place, you're ready to start creating carousels. Creat
     </li>
   </ul>
 </div>
+
+<script>
+  $('.my-carousel').carousel();
+</script>
 ```
 
-##### JavaScript
-```js
-$('.my-carousel').carousel();
-```
-
-### That's it?
-Easy, right!? There's no need to add any special styles to your carousel items, or to set an explicit height on any element within the carousel. We'll handle the animation and transition between carousel items, but the presentation is completely up to you.
+Easy, right? By default, each item in the carousel will fill the width of its container. Swipe left or right to see other items. The height of the carousel is determined by its content – there's no need to set an explicit height if you don't want to.
 
 ## Configuration
 There are various ways to configure the **carousel.js** script for different behavior and functionality. Add these options to the `carousel()` function to alter the behavior of your carousels. The default values are shown below, and all configuration settings are optional.
@@ -48,23 +45,23 @@ $('.selector').carousel({
   paging: false,           // enable paging buttons
   navigation: false,       // enable navigation buttons
   loop: false,             // enable loop (only works with paging or autoplay)
-  autoplay: false,         // automatically advance to the next slide
-  delay: 12000,            // use with autoplay, delay between transitions
+  autoplay: false,         // automatically advance to the next slide when idle
+  delay: 12000,            // delay between autoplay transitions
   buttons: {
-    previous: 'Previous',  // label added to the "previous" paging button
-    next: 'Next',          // label added to the "next" paging button
-    navigation: '%i'       // label added to navigation buttons ("%i" is replaced with the item number)
+    previous: 'Previous',  // label for the "previous" paging button
+    next: 'Next',          // label for the "next" paging button
+    navigation: '%i'       // navigation button labels ("%i" is replaced with the item number)
   },
   movethreshold: 10,       // threshold (in pixels) before items will move
   swipethreshold: 10,      // threshold (in percent) before items will "swipe"
   oninit: function(){},    // an event that runs after the carousel has been created
-  onupdate: function(e){}, // an event that runs each time the carousel moves
+  onupdate: function(p){}, // an event that runs each time the carousel moves (p = position)
   destroy: false           // set to "true" to destroy a previously created carousel
 });
 ```
 
 ## Responsive carousels
-Multiple carousel items may appear at once using the **carousel.js** script. You can even configure a varying number of columns to appear on different screen sizes. To begin, add one or more CSS classes, such as `xs-2cols`, to your carousel container. For example:
+Multiple carousel items may appear at once using the **carousel.js** script. You can even configure a varying number of columns to appear on different screen sizes. To begin, add one or more CSS classes, such as `xs-2cols`, to your carousel container.
 ```html
 <div class="product-spinner xs-2cols sm-4cols md-5cols lg-6cols">
   <ul>
@@ -92,9 +89,11 @@ Responsive screen sizes, class names, and an example of each class name are show
 ## Concerning white space
 What makes **carousel.js** different from other carousel/slideshow scripts is that you don't have to explicity set a height on your carousels. This is great because it will allow content within your carousel to adapt and grow to fit different screen sizes.
 
-In order to achieve this effect, we show each item within the carousel in horizontal orientation using `display:inline-block`. This style is defined in the [carousel.css](https://github.com/oldrivercreative/carousel/blob/master/carousel.css) stylesheet. One side-effect of using this technique is that any whitespace between one list item and another will result in a small gap between items. For example:
+In order to achieve this effect, we show each item within the carousel in horizontal orientation using `display:inline-block`. This style is defined in the [carousel.css](https://github.com/oldrivercreative/carousel/blob/master/carousel.css) stylesheet.
 
 #### HTML with whitespace (bad)
+One side-effect of using this technique is that any whitespace between one list item and another will result in a small gap between items.
+
 ```html
 <div class="bad-carousel">
   <ul>
@@ -111,9 +110,9 @@ In order to achieve this effect, we show each item within the carousel in horizo
 </div>
 ```
 
-For best results, always remove all whitespace between items. For example:
-
 #### HTML without whitespace (good)
+For best results, always remove all whitespace between items.
+
 ```html
 <div class="good-carousel">
   <ul>

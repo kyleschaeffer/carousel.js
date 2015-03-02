@@ -133,7 +133,15 @@
             <!-- basic template -->
             <h2>Simple example</h2>
             <p>In this example, we&rsquo;ll use all the default options from <strong>carousel.js</strong> to create a simple touch-friendly carousel.</p>
-            <pre>$('.my-simple-carousel').carousel();</pre>
+            <pre><span style="color:#3a4a64">&lt;<span style="color:#3a4a64">div</span> <span style="color:#3a4a64">class</span>=<span style="color:#409b1c">"my-simple-carousel"</span>&gt;</span>
+    <span style="color:#3a4a64">&lt;<span style="color:#3a4a64">ul</span>&gt;</span>
+        <span style="color:#8c868f">&lt;!-- items --&gt;</span>
+    <span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">ul</span>&gt;</span>
+<span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">div</span>&gt;</span>
+
+&lt;<span style="color:#3b5bb5">script</span>&gt;
+<span style="color:#ff7800">$</span>(<span style="color:#409b1c">'.my-simple-carousel'</span>).carousel();
+&lt;/<span style="color:#3b5bb5">script</span>&gt;</pre>
             <div class="carousel my-simple-carousel">
                 <ul>
                     <li>
@@ -155,13 +163,21 @@
             <!-- hero template -->
             <h2>Hero carousel example</h2>
             <p>Creating a hero carousel is easy with <strong>carousel.js</strong>. We&rsquo;ll enable a few options when initializing our script to add some new functionality to the carousel.</p>
-            <pre>$('.my-hero-carousel').carousel({
-    paging: true,
-    navigation: true,
-    loop: true,
-    autoplay: true,
-    delay: 5000
-});</pre>
+            <pre><span style="color:#3a4a64">&lt;<span style="color:#3a4a64">div</span> <span style="color:#3a4a64">class</span>=<span style="color:#409b1c">"my-hero-carousel"</span>&gt;</span>
+    <span style="color:#3a4a64">&lt;<span style="color:#3a4a64">ul</span>&gt;</span>
+        <span style="color:#8c868f">&lt;!-- items --&gt;</span>
+    <span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">ul</span>&gt;</span>
+<span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">div</span>&gt;</span>
+
+&lt;<span style="color:#3b5bb5">script</span>&gt;
+<span style="color:#ff7800">$</span>(<span style="color:#409b1c">'.my-hero-carousel'</span>).carousel({
+    paging: <span style="color:#3b5bb5">true</span>,
+    navigation: <span style="color:#3b5bb5">true</span>,
+    loop: <span style="color:#3b5bb5">true</span>,
+    autoplay: <span style="color:#3b5bb5">true</span>,
+    delay: <span style="color:#3b5bb5">5000</span>
+});
+&lt;/<span style="color:#3b5bb5">script</span>&gt;</pre>
             <div class="carousel my-hero-carousel">
                 <ul>
                     <li>
@@ -174,7 +190,7 @@
                         </div>
                     </li><li>
                         <div class="my-hero-item">
-                            Easy-peasy, lemon-squeezy.
+                            Easy as pie.
                         </div>
                     </li>
                 </ul>
@@ -183,9 +199,17 @@
             <!-- product spinner template -->
             <h2>Product spinner example</h2>
             <p>The <strong>carousel.js</strong> script includes styles for building multi-column carousels, like shown in the example below. Simply add a CSS class, such as <code>sm-4cols</code>, to your carousel HTML in order to display carousel items in multiple columns on different screen sizes.</p>
-            <pre>$('.my-product-spinner').carousel({
-    paging: true
-});</pre>
+            <pre><span style="color:#3a4a64">&lt;<span style="color:#3a4a64">div</span> <span style="color:#3a4a64">class</span>=<span style="color:#409b1c">"my-product-spinner xs-2cols sm-4cols md-5cols lg-6cols"</span>&gt;</span>
+    <span style="color:#3a4a64">&lt;<span style="color:#3a4a64">ul</span>&gt;</span>
+        <span style="color:#8c868f">&lt;!-- items --&gt;</span>
+    <span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">ul</span>&gt;</span>
+<span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">div</span>&gt;</span>
+
+&lt;<span style="color:#3b5bb5">script</span>&gt;
+<span style="color:#ff7800">$</span>(<span style="color:#409b1c">'.my-product-spinner'</span>).carousel({
+    paging: <span style="color:#3b5bb5">true</span>
+});
+&lt;/<span style="color:#3b5bb5">script</span>&gt;</pre>
             <div class="carousel xs-2cols sm-4cols md-5cols lg-6cols my-product-spinner">
                 <div class="my-product-spinner-inner">
                     <ul>
