@@ -13,8 +13,8 @@ The easiest way to get started with **carousel.js** is to attach the required Ja
 
 ### Prerequisites
 1. Attach [jQuery](http://jquery.com/) version 1.7.0 or higher to your HTML document
-2. Attach [carousel.js](https://github.com/oldrivercreative/carousel/blob/master/carousel.js), or copy the contents of this file into an existing JS file
-3. Attach [carousel.css](https://github.com/oldrivercreative/carousel/blob/master/carousel.css), or copy the contents of this file into an existing CSS file
+2. Attach [carousel.js](https://github.com/oldrivercreative/carousel.js/blob/master/carousel.js), or copy the contents of this file into an existing JS file
+3. Attach [carousel.css](https://github.com/oldrivercreative/carousel.js/blob/master/carousel.css), or copy the contents of this file into an existing CSS file
 
 ### Making carousels
 With all prerequisites in place, you're ready to start creating carousels. Create a container and an unordered list (`<ul>`) in your HTML, and then run the `carousel()` jQuery function on your container.
@@ -75,7 +75,7 @@ Multiple carousel items may appear at once using the **carousel.js** script. You
   </ul>
 </div>
 ```
-In this example, two items will appear side-by-side on extra-small screens (`xs-2cols`). Four items will appear on small screens (`sm-4cols`), five items will appear on medium screens (`md-5cols`), and six items will appear on large screens (`lg-6cols`). The [carousel.css](https://github.com/oldrivercreative/carousel/blob/master/carousel.css) stylesheet includes styles for up to twelve columns within your carousels.
+In this example, two items will appear side-by-side on extra-small screens (`xs-2cols`). Four items will appear on small screens (`sm-4cols`), five items will appear on medium screens (`md-5cols`), and six items will appear on large screens (`lg-6cols`). The [carousel.css](https://github.com/oldrivercreative/carousel.js/blob/master/carousel.css) stylesheet includes styles for up to twelve columns within your carousels.
 
 Responsive screen sizes, class names, and an example of each class name are shown below. For class names, replace `%` with the number of columns you would like to display.
 
@@ -89,7 +89,7 @@ Responsive screen sizes, class names, and an example of each class name are show
 ## Concerning white space
 What makes **carousel.js** different from other carousel/slideshow scripts is that you don't have to explicity set a height on your carousels. This is great because it will allow content within your carousel to adapt and grow to fit different screen sizes.
 
-In order to achieve this effect, we show each item within the carousel in horizontal orientation using `display:inline-block`. This style is defined in the [carousel.css](https://github.com/oldrivercreative/carousel/blob/master/carousel.css) stylesheet.
+In order to achieve this effect, we show each item within the carousel in horizontal orientation using `display:inline-block`. This style is defined in the [carousel.css](https://github.com/oldrivercreative/carousel.js/blob/master/carousel.css) stylesheet.
 
 #### HTML with whitespace (bad)
 One side-effect of using this technique is that any whitespace between one list item and another will result in a small gap between items.
