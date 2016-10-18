@@ -87,7 +87,7 @@ Responsive screen sizes, class names, and an example of each class name are show
 | Large (`≥1200px`) | `lg-%cols` | `.lg-12cols` | 12 |
 
 ## Concerning white space
-What makes **carousel.js** different from other carousel/slideshow scripts is that you don't have to explicity set a height on your carousels. This is great because it will allow content within your carousel to adapt and grow to fit different screen sizes.
+What makes **carousel.js** different from other carousel/slideshow scripts is that you don't have to explicitly set a height on your carousels. This is great because it will allow content within your carousel to adapt and grow to fit different screen sizes.
 
 In order to achieve this effect, we show each item within the carousel in horizontal orientation using `display:inline-block`. This style is defined in the [carousel.css](https://github.com/oldrivercreative/carousel.js/blob/master/carousel.css) stylesheet.
 
