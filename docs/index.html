@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>carousel.js &mdash; A jQuery carousel/slideshow plugin</title>
+  <meta name="description" content="">
+  <link rel="stylesheet" href="docs.css">
+  <link rel="stylesheet" href="../src/carousel.css">
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <h1>carousel.js</h1>
+
+    <!-- basic template -->
+    <h2>Simple example</h2>
+    <p>In this example, we&rsquo;ll use all the default options from <strong>carousel.js</strong> to create a simple touch-friendly carousel.</p>
+    <pre><span style="color:#3a4a64">&lt;<span style="color:#3a4a64">div</span> <span style="color:#3a4a64">class</span>=<span style="color:#409b1c">"my-simple-carousel"</span>&gt;</span>
+  <span style="color:#3a4a64">&lt;<span style="color:#3a4a64">ul</span>&gt;</span>
+    <span style="color:#8c868f">&lt;!-- items --&gt;</span>
+  <span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">ul</span>&gt;</span>
+<span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">div</span>&gt;</span>
+
+&lt;<span style="color:#3b5bb5">script</span>&gt;
+  <span style="color:#ff7800">$</span>(<span style="color:#409b1c">'.my-simple-carousel'</span>).carousel();
+&lt;/<span style="color:#3b5bb5">script</span>&gt;</pre>
+      <div class="carousel my-simple-carousel">
+        <ul>
+          <li>
+            <div class="my-simple-item">
+              Swipe or drag to see more &raquo;
+            </div>
+          </li><li>
+            <div class="my-simple-item">
+              &laquo; Hi, there &raquo;
+            </div>
+          </li><li>
+            <div class="my-simple-item">
+              &laquo; Thanks for swiping
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- hero template -->
+      <h2>Hero carousel example</h2>
+      <p>Creating a hero carousel is easy with <strong>carousel.js</strong>. We&rsquo;ll enable a few options when initializing our script to add some new functionality to the carousel.</p>
+      <pre><span style="color:#3a4a64">&lt;<span style="color:#3a4a64">div</span> <span style="color:#3a4a64">class</span>=<span style="color:#409b1c">"my-hero-carousel"</span>&gt;</span>
+  <span style="color:#3a4a64">&lt;<span style="color:#3a4a64">ul</span>&gt;</span>
+    <span style="color:#8c868f">&lt;!-- items --&gt;</span>
+  <span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">ul</span>&gt;</span>
+<span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">div</span>&gt;</span>
+
+&lt;<span style="color:#3b5bb5">script</span>&gt;
+  <span style="color:#ff7800">$</span>(<span style="color:#409b1c">'.my-hero-carousel'</span>).carousel({
+    paging: <span style="color:#3b5bb5">true</span>,
+    navigation: <span style="color:#3b5bb5">true</span>,
+    loop: <span style="color:#3b5bb5">true</span>,
+    autoplay: <span style="color:#3b5bb5">true</span>,
+    delay: <span style="color:#3b5bb5">5000</span>
+  });
+&lt;/<span style="color:#3b5bb5">script</span>&gt;</pre>
+        <div class="carousel my-hero-carousel">
+          <ul>
+            <li>
+              <div class="my-hero-item">
+                I&rsquo;m accessible!
+              </div>
+            </li><li>
+              <div class="my-hero-item">
+                &hellip;and functional.
+              </div>
+            </li><li>
+              <div class="my-hero-item">
+                Easy as pie.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- product spinner template -->
+        <h2>Product spinner example</h2>
+        <p>The <strong>carousel.js</strong> script includes styles for building multi-column carousels, like shown in the example below. Simply add a CSS class, such as <code>sm-4cols</code>, to your carousel HTML in order to display carousel items in multiple columns on different screen sizes.</p>
+        <pre><span style="color:#3a4a64">&lt;<span style="color:#3a4a64">div</span> <span style="color:#3a4a64">class</span>=<span style="color:#409b1c">"my-product-spinner xs-2cols sm-4cols md-5cols lg-6cols"</span>&gt;</span>
+  <span style="color:#3a4a64">&lt;<span style="color:#3a4a64">ul</span>&gt;</span>
+    <span style="color:#8c868f">&lt;!-- items --&gt;</span>
+  <span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">ul</span>&gt;</span>
+<span style="color:#3a4a64">&lt;/<span style="color:#3a4a64">div</span>&gt;</span>
+
+&lt;<span style="color:#3b5bb5">script</span>&gt;
+  <span style="color:#ff7800">$</span>(<span style="color:#409b1c">'.my-product-spinner'</span>).carousel({
+    paging: <span style="color:#3b5bb5">true</span>
+  });
+&lt;/<span style="color:#3b5bb5">script</span>&gt;</pre>
+          <div class="carousel xs-2cols sm-4cols md-5cols lg-6cols my-product-spinner">
+            <div class="my-product-spinner-inner">
+              <ul>
+                <li>
+                  <div class="my-product-item">
+                    Product 1
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 2
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 3
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 4
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 5
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 6
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 7
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 8
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 9
+                  </div>
+                </li><li>
+                  <div class="my-product-item">
+                    Product 10
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h2>Learn more about <strong>carousel.js</strong></h2>
+          <p>View the source code, find helpful documentation, and see more examples of <strong>carousel.js</strong> in action on the GitHub project site: <a href="https://github.com/oldrivercreative/carousel">https://github.com/oldrivercreative/carousel</a></p>
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="../src/carousel.js"></script>
+        <script src="docs.js"></script>
+
+      </body>
+      </html>
